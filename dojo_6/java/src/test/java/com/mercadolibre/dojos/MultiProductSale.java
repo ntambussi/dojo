@@ -10,17 +10,17 @@ import static java.util.Arrays.*;
  */
 public class MultiProductSale {
 
-    private final SellingPrice sellingPrice;
+    private final SingleSellingPrice singleSellingPrice;
     private final List<Product> products;
 
-    public MultiProductSale(Product products[], SellingPrice sellingPrice) {
+    public MultiProductSale(Product products[], SingleSellingPrice singleSellingPrice) {
         this.products = new LinkedList<Product>(asList(products));
-        this.sellingPrice = sellingPrice;
+        this.singleSellingPrice = singleSellingPrice;
     }
 
-    public MultiProductSale(int quantity, Product product, SellingPrice sellingPrice) {
+    public MultiProductSale(int quantity, Product product, SingleSellingPrice singleSellingPrice) {
         this.products = new LinkedList<Product>();
-        this.sellingPrice = sellingPrice;
+        this.singleSellingPrice = singleSellingPrice;
 
         while (quantity > 0 ) {
             this.products.add(product);
@@ -28,8 +28,8 @@ public class MultiProductSale {
         }
     }
 
-    public Double profit() {
-        return this.sellingPrice.minus( this.accumalatedCost() );
+    public Profit profit() {
+        return new Profit( this.singleSellingPrice.minus(this.accumalatedCost()) );
     }
 
     private Cost accumalatedCost() {

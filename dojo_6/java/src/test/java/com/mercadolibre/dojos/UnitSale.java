@@ -5,14 +5,14 @@ package com.mercadolibre.dojos;
  */
 public class UnitSale {
     private final Product product;
-    private final SellingPrice sellingPrice;
+    private final SellingPrice singleSellingPrice;
 
-    public UnitSale(Product product, SellingPrice sellingPrice) {
+    public UnitSale(Product product, SellingPrice singleSellingPrice) {
         this.product = product;
-        this.sellingPrice = sellingPrice;
+        this.singleSellingPrice = singleSellingPrice;
     }
 
-    public Double profit() {
-        return product.profit( sellingPrice );
+    public Profit profit() {
+        return product.profit(singleSellingPrice);
     }
 }

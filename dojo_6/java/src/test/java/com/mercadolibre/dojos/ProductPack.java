@@ -13,10 +13,12 @@ public class ProductPack implements Product {
     }
 
     private Cost getCostPerItem() {
+
         return this.cost.divide( this.quantity );
     }
-    public Double profit(SellingPrice sellingPrice) {
-        return sellingPrice.minus(this.getCostPerItem());
+
+    public Profit profit(SellingPrice singleSellingPrice) {
+        return new Profit( singleSellingPrice.minus(this.getCostPerItem()) );
     }
 
     public Cost accumulatedCost(Cost c) {

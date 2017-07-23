@@ -10,8 +10,9 @@ public class SingleProduct implements Product {
         this.cost = cost;
     }
 
-    public Double profit(SellingPrice sellingPrice) {
-        return sellingPrice.minus(this.cost);
+    public Profit profit(SellingPrice singleSellingPrice) {
+
+        return new Profit(singleSellingPrice.minus(this.cost));
     }
 
     public Cost accumulatedCost(Cost c) {

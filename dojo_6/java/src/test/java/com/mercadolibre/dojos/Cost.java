@@ -5,6 +5,7 @@ package com.mercadolibre.dojos;
  */
 public class Cost {
     private Double value;
+
     public Cost(Double value) {
         this.value = value;
     }
