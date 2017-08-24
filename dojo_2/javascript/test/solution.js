@@ -10,11 +10,13 @@ describe("solution", () => {
 
     describe("sheet", () => {
         describe("cells", () => {
-            it.skip("should populate two cells with numeric values and response the stored values", () => {
+            it("should populate two cells with numeric values and response the stored values", () => {
 
-                // ... 
-                // Code here!
-                // ... 
+                // A-A-A
+                // Arrange - Act - Assert
+
+                sheet.setValue("a1", 1);
+                sheet.setValue("a2", 2);
 
                 chai.expect( sheet.get("a1") )
                     .to.be.eql(1);
@@ -24,9 +26,7 @@ describe("solution", () => {
 
             it.skip("should polulate cells with a label and a value and response the stored values", () => {
 
-                // ... 
-                // Code here!
-                // ... 
+                sheet.setLabel("a1", "Valor: ");
 
                 chai.expect( sheet.get("a1") )
                     .to.be.eql("Valor:");
@@ -36,9 +36,8 @@ describe("solution", () => {
 
             it.skip("should store values and update values references", () => {
 
-                // ... 
-                // Code here!
-                // ... 
+                sheet.setValue("a1",1);
+                //sheet.set...("a2","=id(a1)");
 
                 chai.expect( sheet.get("a1") )
                     .to.be.eql(1);
