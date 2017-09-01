@@ -5,11 +5,12 @@ function AccountMoney(balance) {
 }
 
 AccountMoney.prototype.printPaymentDetail = function(amountToPay) {
-	return "Dinero en Cuenta: $" + this.contributeWith(amountToPay);
+	return "Dinero en Cuenta: $" + amountToPay;
 };
 
-AccountMoney.prototype.contributeWith = function(amountToPay) {
-	return Math.min(amountToPay, this._balance);
+AccountMoney.prototype.contributeWith = function(remainingAmount) {
+	var contribution = Math.min(remainingAmount.amountToPay(), this._balance);
+	return remainingAmount.addContribution(contribution);
 };
 
 // ---
@@ -32,12 +33,12 @@ function CreditCard(installment) {
 	this._installment = installment || new Installment(1);
 }
 
-CreditCard.prototype.contributeWith = function(amount) {
-	return amount;
+CreditCard.prototype.contributeWith = function(remainingAmount) {
+	return remainingAmount.addContribution(remainingAmount.amountToPay());
 };
 
 CreditCard.prototype.printPaymentDetail = function(amountToPay) {
-	return "Tarjeta de Crédito: " + this._installment.printDetailForAmount(this.contributeWith(amountToPay));
+	return "Tarjeta de Crédito: " + this._installment.printDetailForAmount(amountToPay);
 };
 
 
@@ -65,8 +66,13 @@ function RemainingAmount(initialAmount) {
 	this._remainingAmount = initialAmount;
 }
 
-RemainingAmount.prototype.addContribution = function() {
-	// body...
+RemainingAmount.prototype.addContribution = function(contribution) {
+	this._remainingAmount = this._remainingAmount - contribution;
+	return contribution;
+};
+
+RemainingAmount.prototype.amountToPay = function() {
+	return this._remainingAmount;
 };
 
 // ---
@@ -90,13 +96,16 @@ Order.prototype._totalAmount = function() {
 };
 
 Order.prototype.printPaymentDetail = function() {
-	var detail = "";
-	
+	var details = [];
+	var remainingAmount = new RemainingAmount(this._totalAmount());
+
 	for(var i=0; i < this._payments.length; i++) {
-		detail += this._payments[i].printPaymentDetail(this._totalAmount());
+		var payment = this._payments[i]; 
+		var contribution = payment.contributeWith(remainingAmount);
+		details.push(payment.printPaymentDetail(contribution));
 	}
 
-	return detail;
+	return details.join(" - ");
 };
 
 
@@ -145,6 +154,16 @@ describe("Dojo 7", () => {
 			order.payWith(new CreditCard(new Installment(2)));
 
 			chai.assert.equal("Tarjeta de Crédito: 2x $525", order.printPaymentDetail());
+        });
+
+        it("Tengo una orden por 1000 y pago 100 con dinero en cuenta y el resto con tarjeta. Al imprimir el detalle de pagos se muestra $100 por dinero en cuenta y $900 con Tarjeta en 1 cuota", () => {
+			var order = new Order(1000 /* item total */);
+			var accountMoneyBalance = 100;
+			
+			order.payWith(new AccountMoney(accountMoneyBalance));
+			order.payWith(new CreditCard());
+
+			chai.assert.equal("Dinero en Cuenta: $100 - Tarjeta de Crédito: 1x $900", order.printPaymentDetail());
         });
     });
 });
