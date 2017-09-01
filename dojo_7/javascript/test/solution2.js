@@ -2,15 +2,14 @@ const chai = require('chai');
 
 function AccountMoney(balance) {
 	this._balance = balance;
-	this._contribution = 0;
 }
 
-AccountMoney.prototype.printPaymentDetail = function() {
-	return "Dinero en Cuenta: $" + this._contribution;
+AccountMoney.prototype.printPaymentDetail = function(amountToPay) {
+	return "Dinero en Cuenta: $" + this.contributeWith(amountToPay);
 };
 
 AccountMoney.prototype.contributeWith = function(amountToPay) {
-	this._contribution = Math.min(amountToPay, this._balance);
+	return Math.min(amountToPay, this._balance);
 };
 
 // ---
@@ -31,15 +30,14 @@ Installment.prototype._amount = function(amountToPay) {
 
 function CreditCard(installment) {
 	this._installment = installment || new Installment(1);
-	this._contribution = 0;
 }
 
 CreditCard.prototype.contributeWith = function(amount) {
-	this._contribution = amount;
+	return amount;
 };
 
-CreditCard.prototype.printPaymentDetail = function() {
-	return "Tarjeta de Crédito: " + this._installment.printDetailForAmount(this._contribution);
+CreditCard.prototype.printPaymentDetail = function(amountToPay) {
+	return "Tarjeta de Crédito: " + this._installment.printDetailForAmount(this.contributeWith(amountToPay));
 };
 
 
@@ -63,6 +61,16 @@ NoShipment.prototype.cost = function() {
 
 // ---
 
+function RemainingAmount(initialAmount) {
+	this._remainingAmount = initialAmount;
+}
+
+RemainingAmount.prototype.addContribution = function() {
+	// body...
+};
+
+// ---
+
 function Order(amount) {
 	this._amount = amount;
 	this._shipment = new NoShipment();
@@ -74,7 +82,6 @@ Order.prototype.shipWith = function(shipment) {
 };
 
 Order.prototype.payWith = function(payment) {
-	payment.contributeWith(this._totalAmount());
 	this._payments.push(payment);
 };
 
@@ -84,9 +91,9 @@ Order.prototype._totalAmount = function() {
 
 Order.prototype.printPaymentDetail = function() {
 	var detail = "";
-
+	
 	for(var i=0; i < this._payments.length; i++) {
-		detail += this._payments[i].printPaymentDetail();
+		detail += this._payments[i].printPaymentDetail(this._totalAmount());
 	}
 
 	return detail;
