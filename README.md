@@ -9,7 +9,7 @@
 5. Escribimos código duplicado? 
 6. Diferenciamos Uso vs Construcción? 
 7. Un cambio de requerimiento afecta a varias entidades de nuestro modelo? 
-8. El lenguaje que utilizamos en el código es diferente al que utiliza la compañía? 
+8. El léxico que utilizamos en el código es diferente al que utiliza la compañía? 
 9. Es difícil escribir nuevos tests?
 10. Tenemos métodos que nos permiten preguntarle a un objeto acerca de su estado (```Payment>>isApproved```, ```Payment>>isCreditCard```, ```Shipping>>isSamedayDelivery```, etc.).
 11. Sabemos cuál es el impacto de estas prácticas?
@@ -21,7 +21,7 @@ Crees que esto sí degrada o no degrada la calidad del código? Te gustaría dis
 
 ### ¿Cómo nos impacta en el día a día estas prácticas?
 
-Estos y otros tantos problemas, que prefiero ignorarlos momentaneamente, generan código difícil de extender y mantener. Como consecuencia un cambio de requerimiento redunda en actualizaciones de código complejas (sino imposible) de abordar en un tiempo razonable.
+Estos y otros tantos problemas, que prefiero ignorarlos momentaneamente, generan código difícil de extender, entender y mantener. Como consecuencia un cambio de requerimiento redunda en actualizaciones de código complejas (sino imposible) de abordar en un tiempo razonable.
 
 ### Solución 
 
@@ -34,14 +34,13 @@ Desarrollando el dominio del paradigma en un ambiente controlado (**no productiv
 ### Dojo
 
 #### ¿De que se trata la actividad?
-La idea es resolver un problema de modelado orientado a objetos, luego aplicar ciertas distorsiones de requerimientos y ver que tan bien responde nuestro modelo ante esos cambios.
+La idea es resolver un problema de modelado orientado a objetos, luego aplicar ciertas distorsiones de requerimientos y ver que tan resilente es nuestro modelo al someterlo a estos cambios.
 
 #### ¿Que lenguaje?
 En principio Javascript y/o Java.
 
 #### Problemáticas o Ejercicio
-
-Si bien tengo un ejercicios para plantear les propongo que compartan algún problema donde crean que se puede aplicar alguna mejora de código (con anterioridad) y vemos como acotarlo para hacer una sesión de 30 minutos de programación y luego 30 minutos de puesta en común.
+Si bien contamos con un conjunto de actividades para plantear les propongo que compartan algún problema donde crean que se puede aplicar alguna mejora de código (con anterioridad) y vemos como acotarlo para hacer una sesión de 30 minutos de programación y luego 30 minutos de puesta en común.
 
 #### Comentarios Varios
 
