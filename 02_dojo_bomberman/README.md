@@ -2,7 +2,7 @@
 
 El objetivo de este dojo es implementar parcialmente alguna funcionalidad del juego [Bomberman#1983](https://en.wikipedia.org/wiki/Bomberman_(1983_video_game)).
 
-La funcionalidad que buscamos implementar queda descripta por los tests de integración listados en el archivo [test/solution.js](test/solution.js)
+La funcionalidad que buscamos implementar queda descripta por los tests de integración listados en el archivo [test/solution.js](javascript/test/solution.js)
 
 ### Metodología
 
