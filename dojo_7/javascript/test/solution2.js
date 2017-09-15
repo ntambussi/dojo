@@ -8,9 +8,8 @@ AccountMoney.prototype.printPaymentDetail = function(amountToPay) {
 	return "Dinero en Cuenta: $" + amountToPay;
 };
 
-AccountMoney.prototype.contributeWith = function(remainingAmount) {
-	var contribution = Math.min(remainingAmount.amountToPay(), this._balance);
-	return remainingAmount.addContribution(contribution);
+AccountMoney.prototype.contributeWith = function(amountToPay) {
+	return Math.min(amountToPay, this._balance);
 };
 
 // ---
@@ -33,8 +32,8 @@ function CreditCard(installment) {
 	this._installment = installment || new Installment(1);
 }
 
-CreditCard.prototype.contributeWith = function(remainingAmount) {
-	return remainingAmount.addContribution(remainingAmount.amountToPay());
+CreditCard.prototype.contributeWith = function(amountToPay) {
+	return amountToPay;
 };
 
 CreditCard.prototype.printPaymentDetail = function(amountToPay) {
@@ -66,13 +65,10 @@ function RemainingAmount(initialAmount) {
 	this._remainingAmount = initialAmount;
 }
 
-RemainingAmount.prototype.addContribution = function(contribution) {
+RemainingAmount.prototype.addContribution = function(payment) {
+	var contribution = payment.contributeWith(this._remainingAmount);
 	this._remainingAmount = this._remainingAmount - contribution;
 	return contribution;
-};
-
-RemainingAmount.prototype.amountToPay = function() {
-	return this._remainingAmount;
 };
 
 // ---
@@ -91,6 +87,10 @@ Order.prototype.payWith = function(payment) {
 	this._payments.push(payment);
 };
 
+Order.prototype.payWithPayments = function(paymentList) {
+	paymentList.forEach( p => this.payWith(p) );
+};
+
 Order.prototype._totalAmount = function() {
 	return this._amount + this._shipment.cost();
 };
@@ -101,7 +101,7 @@ Order.prototype.printPaymentDetail = function() {
 
 	for(var i=0; i < this._payments.length; i++) {
 		var payment = this._payments[i]; 
-		var contribution = payment.contributeWith(remainingAmount);
+		var contribution = remainingAmount.addContribution(payment);
 		details.push(payment.printPaymentDetail(contribution));
 	}
 
@@ -162,6 +162,24 @@ describe("Dojo 7", () => {
 			
 			order.payWith(new AccountMoney(accountMoneyBalance));
 			order.payWith(new CreditCard());
+
+			chai.assert.equal("Dinero en Cuenta: $100 - Tarjeta de Crédito: 1x $900", order.printPaymentDetail());
+        });
+
+        it("Tengo una orden por 1000 y pago 100 con dinero en cuenta y el resto con tarjeta. Al imprimir el detalle de pagos se muestra $100 por dinero en cuenta y $900 con Tarjeta en 1 cuota", () => {
+			var order = new Order(1000 /* item total */);
+			var accountMoneyBalance = 100;
+			
+			order.payWithPayments([new AccountMoney(accountMoneyBalance), new CreditCard()]);
+
+			chai.assert.equal("Dinero en Cuenta: $100 - Tarjeta de Crédito: 1x $900", order.printPaymentDetail());
+        });
+
+        it("Tengo una orden por 1000 y pago 100 con dinero en cuenta y el resto con tarjeta. Al imprimir el detalle de pagos se muestra $100 por dinero en cuenta y $900 con Tarjeta en 1 cuota", () => {
+			var order = new Order(1000 /* item total */);
+			var accountMoneyBalance = 100;
+			
+			order.payWithPayments([new CreditCard(), new AccountMoney(accountMoneyBalance)]);
 
 			chai.assert.equal("Dinero en Cuenta: $100 - Tarjeta de Crédito: 1x $900", order.printPaymentDetail());
         });
