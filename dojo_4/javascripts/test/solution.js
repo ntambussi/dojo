@@ -22,7 +22,7 @@ describe("pacman", () => {
         chai.assert.isTrue(pacman.isTwoTimesFatterThan(oldWeight));
     });
 
-    it("should create a pacman with an initial weight", () => {
+    it("should not get fatter if it doesnt eat", () => {
         const pacman = new Pacman(20);
         const actualWeight = pacman.getWeight();
         chai.assert.isFalse(pacman.isFatterThan(actualWeight));

@@ -14,111 +14,67 @@ import org.junit.Test;
  */
 public class DojoTest {
 	
-	private SpreadSheet sheet;
-	
 	@Before
 	public void setup() {
-		this.sheet = new SpreadSheet();
 	}
 	
 	@Test
 	@Ignore
-	public void testSpreadSheet_withNumericValues_shouldPopulateTwoCells() {
+	public void test_pacman_should_get_fat_whether_it_eats_biscuits() {
 		
 		// ... 
         // Code here!
         // ... 
 		
-		Object a1 = this.sheet.get("a1");
-		Object a2 = this.sheet.get("a2");
-		
-		assertThat(a1, is(notNullValue()));
-		assertThat((Integer) a1, is( equalTo(1) ));
-		
-		assertThat(a2, is(notNullValue()));
-		assertThat((Integer) a2, is( equalTo(2) ));
 	}
 	
 	@Test
 	@Ignore
-	public void testSpreadSheet_withALabelAndANumericValue_shouldPopulateTwoCells() {
+	public void test_pacman_should_get_two_times_fatter_when_it_eats_cherry() {
 		
 		// ... 
         // Code here!
         // ... 
 		
-		Object a1 = this.sheet.get("a1");
-		Object a2 = this.sheet.get("a2");
-		
-		assertThat(a1, is(notNullValue()));
-		assertThat((Integer) a1, is( equalTo(1) ));
-		
-		assertThat(a2, is(notNullValue()));
-		assertThat((String) a2, is( equalTo("Valor:") ));
 	}
 	
 	@Test
 	@Ignore
-	public void testSpreadSheet_withAReferenceToAnotherCell_shouldReturnTheValueOfTheReferencedCell() {
+	public void test_pacman_should_not_get_fatter_if_doesnt_eat() {
 		
 		// ... 
         // Code here!
         // ... 
 		
-		Object a1 = this.sheet.get("a1");
-		Object a2 = this.sheet.get("a2");
-		
-		assertThat(a1, is(notNullValue()));
-		assertThat((Integer) a1, is( equalTo(1) ));
-		
-		assertThat(a2, is(notNullValue()));
-		assertThat((Integer) a2, is( equalTo(1) ));
 	}
 	
 	@Test
 	@Ignore
-	public void testSpreadSheet_withASummaryFunction_shouldReturnTheResultOfTheSummary() {
-		
-		// ... 
-        // Code here!
-        // ... 
-
-		this.sheet.set("a1", 1);
-		this.sheet.set("a2", 2);
-		
-		Object a3 = this.sheet.get("a3");
-		
-		assertThat(a3, is(notNullValue()));
-		assertThat((Integer) a3, is( equalTo(3) ));
-		
-		this.sheet.set("a2", 9);
-		
-		a3 = this.sheet.get("a3");
-		
-		assertThat(a3, is(notNullValue()));
-		assertThat((Integer) a3, is( equalTo(10) ));
-	}
-	
-	@Test
-	@Ignore
-	public void testSpreadSheet_withASummaryFunctionAndABrokenRange_shouldReturnTheResultOfTheSummary() {
+	public void test_pacman_should_die_whether_it_bumps_into_phantom() {
 		
 		// ... 
         // Code here!
         // ... 
 		
-		this.sheet.set("a1", 1);
-		this.sheet.set("a2", 2);
-		
-		Object a3 = this.sheet.get("a3");
-		
-		assertThat(a3, is(notNullValue()));
-		assertThat((Integer) a3, is( equalTo(3) ));
-		
-		this.sheet.set("a2", 9);
-		
-		assertThat(a3, is(notNullValue()));
-		assertThat((Integer) a3, is( equalTo(10) ));
 	}
 	
+	@Test
+	@Ignore
+	public void test_pacman_should_weaken_phantom_whether_it_eats_pellet() {
+		
+		// ... 
+        // Code here!
+        // ... 
+		
+	}
+	
+	@Test
+	@Ignore
+	public void test_pacman_should_kill_weakened_phantom_when_hit_it() {
+		
+		// ... 
+        // Code here!
+        // ... 
+		
+	}
 }
