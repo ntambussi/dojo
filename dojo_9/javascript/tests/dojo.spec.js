@@ -1,6 +1,6 @@
-import { expect } from 'chai';
+import { expect, assert } from 'chai';
 
-import Dojo from '../src/dojo';
+import Dojo from '../src/Dojo';
 
 describe('#Dojo', () => {
   describe('sensei', () => {
@@ -14,6 +14,21 @@ describe('#Dojo', () => {
       const dojo = new Dojo();
 
       expect(dojo.sensei).to.be.equal('diego');
+    });
+
+    it('it should be both equal', () => {
+      const anInstanceOfDojo = new Dojo();
+      const anotherInstanceOfDojo = new Dojo();
+
+      assert.equal(anInstanceOfDojo.isEqual(anotherInstanceOfDojo), true);
+    });
+
+    it('it shoud throw exception', () => {
+      const dojo = new Dojo();
+
+      assert.throws(() => {
+        dojo.explode();
+      });
     });
   });
 });
