@@ -11,7 +11,8 @@ En función de la disponibilidad los precios del los viajes varian según las si
 - Si 90 días antes del viaje resta vender un %10 de las plazas entonces el incremento es del %50, sino el precio se reduce un %20.
 - 15 días antes el costo del viaje si incrementa un %10 fijo (independientemente de la disponibilidad).
 - La semaman anterior se vende los viajes a un precio igual al costo más un monto fije de 100 (independientemente de la disponibilidad).
- 
+
+```
 
                                                                                                                  viaje
 
@@ -22,6 +23,7 @@ En función de la disponibilidad los precios del los viajes varian según las si
             180                                                 90                                          15  
             d                                                   d                                           d
 
+```
 El objetivo del ejercicio es poder ofrecerle a un potencialcliente cuanto debería pagar por un pasaje para n personas en un momento determinado. 
 
 
