@@ -1,21 +1,24 @@
 {
-  "name": "dojo-javascript",
+  "name": "dojo_10",
   "version": "1.0.0",
-  "description": "Dojo javascript",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha tests/**.spec.js -- --require babel-register --require babel-polyfill",
-    "test:watch": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha tests/**.spec.js -- --require babel-register --require babel-polyfill --watch",
-    "coverage": "npm test && open coverage/lcov-report/index.html"
+    "test": "./node_modules/mocha/bin/_mocha --require babel-polyfill --require babel-register src/test/**.spec.js --",
+    "test:watch": "./node_modules/mocha/bin/_mocha --require babel-polyfill --require babel-register src/test/**.spec.js --watch",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha src/test/**.spec.js -- --require babel-register && open coverage/lcov-report/index.html"
   },
-  "author": "cristian.elias@mercadolibre.com",
-  "license": "MIT",
-  "dependencies": {
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "istanbul": "^1.1.0-alpha.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
-    "mocha": "^4.0.1",
-    "istanbul": "^1.0.0-alpha.2"
+    "mocha": "^5.0.1"
   }
 }
