@@ -14,45 +14,50 @@ Programación orientada a objetos + TDD
 
 ## Pasos para realizar el workshop 
 
-1. Clonamos el repo:
+1. Forkeamos el repo:
+
+2. Clonamos nuestro fork:
 
     ```bash
-        git clone https://github.com/diegosanchez/dojo.git
-    ```
-
-2. Descargamos el branch remote correspondiente al workshop:
-
-    ```bash
-        git checkout workshop
+        git clone https://github.com/juandomingo/dojo.git
     ```
 
 ### Pasos específicos para javascript
-
 0. Instalar [Node Version Manager](https://github.com/creationix/nvm#installation)
 
-1. Dentro de la carpeta javascript, correr en consola:
+1. Ingresar a la carpeta `javascript` del ejercicio sobre el cual vamos a trabajar.
+
+2. Instalar la version de JS que figura en el file [.nvmrc], por ejemplo:
+
+    ```bash
+        nvm install 8.9.1
+    ```
+    > Este paso es necesario solo la primera vez que instalamos cada versión.
+
+3. Decirle a nvm que version de node queremos utilizar
 
     ```bash
         nvm use
     ```
+    > Este comando va a setear la version definida en el file [.nvmrc] como la version de node a utilizar
 
-2. Instalamos las dependencias
+4. Instalamos las dependencias
 
     ```bash
-        npm install
+        npm i
     ```
 
-3. Ejecutamos los tests
+4. Ejecutamos los tests
 
     ```bash
         npm test
     ```
 
-#### Qué necesito?
+5. Miramos nuestra cobertura
 
-0. nvm
-1. node `v8.9.1`
-2. npm  ( preferentemente 5.x o posterior )
+    ```bash
+        npm run coverage
+    ```
 
 ### Pasos específicos para java
 
