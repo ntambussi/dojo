@@ -10,3 +10,5 @@ coverage/
 *.orig
 all.zip
 merged_keys.po
+*.class
+build/
