@@ -64,7 +64,7 @@ Programación orientada a objetos + TDD
 1. Ejecutamos los tests
 
     ```bash
-        mvn test
+        mvn cobertura:cobertura | open ./target/site/cobertura/index.html
         ( Estando en la carpeta que contiene el pom.xml )
     ```
 
